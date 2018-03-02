@@ -13,7 +13,7 @@ LaunchButton {
 
 	*new {
 		|parent, bounds|
-		^super.new.init
+		^super.new.init(parent, bounds);
 	}
 
 	init {
