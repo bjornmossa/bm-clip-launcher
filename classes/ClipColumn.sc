@@ -11,23 +11,38 @@
 //**********
 
 ClipColumn {
-	var <>buttons;
+	var <>buttons,
+	<>patterns,
+	<>height,
+	<>bounds,
+	<>parent,
+	<>view;
 
 	*new {
-		|parent, bounds, itemsCount|
-		^super.new.init(parent, bounds, itemsCount);
+		|parent, bounds, patterns|
+		^super.new.init(parent, bounds, patterns);
 	}
 
 	init {
-		|parent, bounds, itemsCount|
-		var height, buttonViews;
-		height = bounds.height / itemsCount;
-		this.buttons = itemsCount.collect({
+		|parent, bounds, patterns|
+		var buttonViews;
+
+		this.parent = parent;
+		this.bounds = bounds;
+		this.height = bounds.height / patterns.size;
+		this.patterns = patterns;
+		this.buttons = this.fill(patterns.size);
+		buttonViews = this.buttons.collect({|button| button.view});
+		this.view = VLayout(*buttonViews);
+		^this;
+	}
+
+	fill {
+		|count|
+		^count.collect({
 			|i|
-			LaunchButton(i, parent, bounds, height, this);
+			LaunchButton(i, this.parent, this.bounds, this.height, this);
 		});
-		buttonViews = this.buttons.collect({|button| button.view})
-		^VLayout(*buttonViews);
 	}
 
 	ping {
@@ -38,5 +53,25 @@ ClipColumn {
 				{button.switchOff;}
 			);
 		});
+	}
+
+	activate {
+		|button|
+		this.buttons[button].switchOn;
+	}
+
+	deactivate {
+		|button|
+		this.buttons[button].switchOff;
+	}
+
+	playPattern {
+		|index|
+		this.patterns[index].play;
+	}
+
+	stopPattern {
+		|index|
+		this.patterns[index].stop;
 	}
 }
