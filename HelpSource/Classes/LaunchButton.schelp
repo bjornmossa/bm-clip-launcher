@@ -1,0 +1,68 @@
+TITLE:: LaunchButton
+summary:: (put short description here)
+categories:: Undocumented classes
+related:: Classes/SomeRelatedClass, Reference/SomeRelatedStuff, etc.
+
+DESCRIPTION::
+(put long description here)
+
+
+CLASSMETHODS::
+
+METHOD:: new
+(describe method here)
+
+ARGUMENT:: onClr
+(describe argument here)
+
+ARGUMENT:: offClr
+(describe argument here)
+
+ARGUMENT:: sz
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+
+INSTANCEMETHODS::
+
+METHOD:: onOn
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: view
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: draw
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: onOff
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: init
+(describe method here)
+
+ARGUMENT:: onClr
+(describe argument here)
+
+ARGUMENT:: offClr
+(describe argument here)
+
+ARGUMENT:: sz
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+
+EXAMPLES::
+
+code::
+(some example code)
+::

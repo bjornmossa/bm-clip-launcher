@@ -2,76 +2,75 @@
 // Test code below
 //
 // **********
-// w = Window.new();
-// LaunchButton(w, w.view.bounds);
-// w.front;
-//
+// (
+// ~bu = LaunchButton(Color.red, Color.green, 50);
+
+// ~bu.onOn = {"on".postln};
+// ~bu.onOff = {"off".postln};
+
+// ~gui = Window();
+
+// ~gui.layout = HLayout(
+//   ~bu.view
+// );
+
+// ~gui.front;
+// )
 //**********
 
 LaunchButton {
-  var <>index,
-  onColor,
-  offColor,
-  <>view,
-  <>isActive,
-  <>container,
-  <>size,
-  <>width;
+  var onColor;
+  var offColor;
+  var size;
+  var isActive;
+
+  var <view;
+
+  var >onOn;
+  var >onOff;
 
   *new {
-	|i, parent, bounds, size, container|
-	^super.new.init(i, parent, bounds, size, container);
+	| onClr, offClr, sz |
+	^super.new.init(onClr, offClr, sz);
   }
 
   init {
-	|i, parent, bounds, size, container|
-	this.size = size;
-	this.width = bounds.width;
-	this.container = container;
-	this.index = i;
-	this.isActive = false;
-	onColor = Color.red;
-	offColor = Color.gray;
-	this.view = UserView(parent, bounds);
-	this.view.resize = 5;
-	this.view.drawFunc = {this.draw};
-	this.view.action = {this.action;};
-	this.view.mouseDownAction = {
-	  this.isActive = this.isActive.not;
-	  this.view.doAction;
+	| onClr, offClr, sz |
+
+	onColor = onClr;
+	offColor = offClr;
+
+	size = sz;
+	isActive = false;
+
+	view = UserView();
+	view.bounds = Rect(0, 0, ~size, ~size);
+
+	view.drawFunc = {this.draw};
+
+	view.mouseDownAction = {
+	  isActive = isActive.not;
+
+	  if(isActive,
+		{
+		  onOn.value;
+		},
+		{
+		  onOff.value;
+		}
+	  );
+	  view.refresh;
 	};
 	^this;
   }
 
-  switchOn {
-	this.isActive = true;
-	this.view.doAction(this.isActive);
-  }
-
-  switchOff {
-	this.isActive = false;
-	this.view.doAction(this.isActive);
-  }
-
-  action {
-	this.container.ping(this.index);
-	//if (this.isActive,
-	//{
-	//this.container.ping(this.index);
-	//this.container.playPattern(this.index);
-	//}
-	//{this.container.stopPattern(this.index)}
-	//);
-	this.view.refresh;
-  }
-
   draw {
-	if (this.isActive,
+	if (isActive,
 	  {Pen.fillColor = onColor;},
 	  {Pen.fillColor = offColor;}
 	);
 	
-	Pen.fillRect(Rect(0, 0, this.size, this.width));
+	Pen.fillRect(Rect(0, 0, size, size));
   }
 }
 
