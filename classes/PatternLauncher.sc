@@ -15,7 +15,7 @@ PatternLauncher {
 			|c|
 			c.view;
 		});
-		controlCol = ControlColumn(parent, bounds, patternArray.size, clipCols);
+		controlCol = ControlColumn(parent, bounds, patternArray[0].size, clipCols);
 		cols = clipColsViews++controlCol;
 		^HLayout(*cols);
 	}  

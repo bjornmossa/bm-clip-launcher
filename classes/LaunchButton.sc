@@ -15,7 +15,8 @@ LaunchButton {
 	<>view,
 	<>isActive,
 	<>container,
-	<>size;
+	<>size,
+	<>width;
 
 	*new {
 		|i, parent, bounds, size, container|
@@ -25,6 +26,7 @@ LaunchButton {
 	init {
 		|i, parent, bounds, size, container|
 		this.size = size;
+		this.width = bounds.width;
 		this.container = container;
 		this.index = i;
 		this.isActive = false;
@@ -32,7 +34,6 @@ LaunchButton {
 		offColor = Color.gray;
 		this.view = UserView(parent, bounds);
 		this.view.resize = 5;
-		this.view.background = Color.rand;
 		this.view.drawFunc = {this.draw};
 		this.view.action = {this.action;};
 		this.view.mouseDownAction = {
@@ -53,13 +54,14 @@ LaunchButton {
 	}
 
 	action {
-		if (this.isActive,
-			{
-				this.container.ping(this.index);
-				this.container.playPattern(this.index);
-			},
-			{this.container.stopPattern(this.index)}
-		);
+		this.container.ping(this.index);
+		//if (this.isActive,
+		//{
+		//this.container.ping(this.index);
+				//this.container.playPattern(this.index);
+		//}
+			//{this.container.stopPattern(this.index)}
+		//);
 		this.view.refresh;
 	}
 
@@ -69,7 +71,7 @@ LaunchButton {
 			{Pen.fillColor = offColor;}
 		);
 			
-		Pen.fillRect(Rect(0, 0, this.size, this.size));
+		Pen.fillRect(Rect(0, 0, this.size, this.width));
 	}
 }
 

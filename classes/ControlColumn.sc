@@ -25,10 +25,26 @@ ControlColumn {
 
 	ping {
 		|index|
+		if (this.buttons[index].isActive,
+			{
+				this.switchOffAllExept(index);
+				this.playPattern(index);
+			},
+			{
+				this.stopPattern(index);
+			}
+		)
+	}
+
+	switchOffAllExept {
+		|index|
 		this.buttons.do({
 			|button|
-			if (button.index != index && button.isActive,
-				{button.switchOff;}
+			if (button.index != index,
+				{
+					button.switchOff;
+					this.stopPattern(button.index);
+				}
 			);
 		});
 	}

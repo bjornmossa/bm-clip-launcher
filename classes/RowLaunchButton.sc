@@ -5,6 +5,6 @@ RowLaunchButton : LaunchButton {
 			{Pen.fillColor = offColor;}
 		);
 			
-		Pen.fillRect(Rect(0, 0, this.size, this.size));
+		Pen.fillRect(Rect(0, 0, this.size, this.width));
 	}
 }
