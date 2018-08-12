@@ -64,6 +64,18 @@ LaunchButton {
 	^this;
   }
 
+  switchOn {
+	isActive = true;
+	onOn.value;
+	view.refresh;
+  }
+
+  switchOff {
+	isActive = false;
+	onOff.value;
+	view.refresh;
+  }
+
   draw {
 	if (isActive,
 	  {Pen.fillColor = onColor;},
