@@ -18,33 +18,27 @@
 // )
 //**********
 
-LaunchButton {
+LaunchButton : Switchable {
   var onColor;
   var offColor;
-  var size;
   var isActive;
 
   var <view;
 
-  var >onOn;
-  var >onOff;
-
   *new {
-	| onClr, offClr, sz |
-	^super.new.init(onClr, offClr, sz);
+	| onClr, offClr|
+	^super.new.init(onClr, offClr);
   }
 
   init {
-	| onClr, offClr, sz |
+	| onClr, offClr |
 
 	onColor = onClr;
 	offColor = offClr;
 
-	size = sz;
 	isActive = false;
 
 	view = UserView();
-	view.bounds = Rect(0, 0, ~size, ~size);
 
 	view.drawFunc = {this.draw};
 
@@ -82,7 +76,7 @@ LaunchButton {
 	  {Pen.fillColor = offColor;}
 	);
 	
-	Pen.fillRect(Rect(0, 0, size, size));
+	Pen.fillRect(Rect(0, 0, view.bounds.width, view.bounds.height));
   }
 }
 
