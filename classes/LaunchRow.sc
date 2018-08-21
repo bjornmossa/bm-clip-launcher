@@ -1,6 +1,8 @@
 LaunchRow : Switchable {
   var clipButtons;
   var <view;
+  var >onRowPlay;
+  var controlButton;
 
   *new {
 	| clips |
@@ -9,7 +11,6 @@ LaunchRow : Switchable {
 
   init {
 	| clips |
-	var controlButton;
 
 	clipButtons = clips.collect({
 	  | clip, index |
@@ -32,6 +33,7 @@ LaunchRow : Switchable {
 
 	controlButton.onOn = {
 	  this.playAll();
+	  onRowPlay.value(this);
 	};
 
 	controlButton.onOff = {
@@ -57,6 +59,10 @@ LaunchRow : Switchable {
 	  | cb |
 	  cb.switchOff();
 	});
+  }
+
+  stopByControl {
+	controlButton.switchOff();
   }
 
   stopClip {

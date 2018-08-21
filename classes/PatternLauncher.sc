@@ -16,7 +16,12 @@ PatternLauncher {
 
 	  clipRow.onOn = {
 		|row, index|
-		this.switchRow(row, index);
+		this.switchColumn(row, index);
+	  };
+
+	  clipRow.onRowPlay = {
+		| row |
+		this.stopRowsExept(row);
 	  };
 
 	  clipRow;
@@ -30,13 +35,25 @@ PatternLauncher {
 	^VLayout(*clipRowsViews);
   }
 
-  switchRow {
+  switchColumn {
 	| row, index |
 	clipRows.do({
 	  | clipRow |
 	  if(clipRow != row,
 		{
 		  clipRow.stopClip(index);
+		}
+	  )
+	});
+  }
+
+  stopRowsExept {
+	| row |
+	clipRows.do({
+	  | clipRow |
+	  if(clipRow != row,
+		{
+		  clipRow.stopByControl();
 		}
 	  )
 	});
