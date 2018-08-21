@@ -1,5 +1,4 @@
 LaunchRow : Switchable {
-  var isActive;
   var clipButtons;
   var <view;
 
@@ -39,8 +38,6 @@ LaunchRow : Switchable {
 	  this.stopAll();
 	};
 
-	isActive = false;
-
 	view = HLayout(
 	  *clipButtons.collect({|b| b.view})++controlButton.view
 	);
@@ -65,13 +62,5 @@ LaunchRow : Switchable {
   stopClip {
 	| index |
 	clipButtons.at(index).switchOff();
-  }
-
-  switchOn {
-	isActive = true;
-  }
-
-  switchOff {
-	isActive = false;
   }
 }
