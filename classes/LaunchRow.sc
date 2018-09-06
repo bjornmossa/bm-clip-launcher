@@ -15,7 +15,7 @@ LaunchRow : Switchable {
 	clipButtons = clips.collect({
 	  | clip, index |
 	  var button;
-	  button = LaunchButton(Color.red, Color.green);
+	  button = LaunchButton(ColorScheme.enabled, ColorScheme.disabled);
 
 	  button.onOn = {
 		clip.play;
@@ -29,7 +29,7 @@ LaunchRow : Switchable {
 	  button;
 	});
 
-	controlButton = LaunchButton(Color.white, Color.black);
+	controlButton = LaunchButton(ColorScheme.enabled2, ColorScheme.disabled2);
 
 	controlButton.onOn = {
 	  this.playAll();
