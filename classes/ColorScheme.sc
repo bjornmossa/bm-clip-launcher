@@ -5,23 +5,11 @@ ColorScheme {
   classvar <disabled;
   classvar <disabled2;
 
-  *new {
-	| bgColor, enabledColor, enabled2Color, disabledColor, disabled2Color |
-	^super.new.init(
-	  bgColor,
-	  enabledColor,
-	  enabled2Color,
-	  disabledColor,
-	  disabled2Color
-	);
-  }
-
-  init {
-	| bgColor, enabledColor, enabled2Color, disabledColor, disabled2Color |
-	background = bgColor;
-	enabled = enabledColor;
-	enabled2 = enabled2Color;
-	disabled = disabledColor;
-	disabled2 = disabled2Color;
+  *initClass {
+	background = Color.fromHexString("#313135");
+	enabled = Color.fromHexString("#c4897a");
+	enabled2 = Color.fromHexString("#c4897a");
+	disabled = Color.fromHexString("#3d3d44");
+	disabled2 = Color.fromHexString("#3d3d44");
   }
 }
