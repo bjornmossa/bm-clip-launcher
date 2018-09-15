@@ -22,24 +22,16 @@ LaunchButton : Switchable {
   var onColor;
   var offColor;
   var isActive;
-
   var <view;
 
   *new {
-	| onClr, offClr|
-	^super.new.init(onClr, offClr);
+	| onColor, offColor |
+	^super.newCopyArgs(onColor, offColor).init;
   }
 
   init {
-	| onClr, offClr |
-
-	onColor = onClr;
-	offColor = offClr;
-
 	isActive = false;
-
 	view = UserView();
-
 	view.drawFunc = {this.draw};
 
 	view.mouseDownAction = {
