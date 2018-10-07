@@ -15,16 +15,29 @@ LaunchRow : Switchable {
 	clipButtons = clips.collect({
 	  | clip, index |
 	  var button;
-	  button = LaunchButton(ColorScheme.enabled, ColorScheme.disabled);
+	  if(
+		clip.isNil.not,
+		{
+		  button = LaunchButton(
+			ColorScheme.enabled,
+			ColorScheme.disabled
+		  );
 
-	  button.onOn = {
-		clip.play;
-		onOn.value(this, index);
-	  };
+		  button.onOn = {
+			if(button.pattern.isPlaying.not, {
+			  button.pattern = clip.play(quant: 1);
+			  onOn.value(this, index);
+			});
+		  };
 
-	  button.onOff = {
-		clip.stop;
-	  };
+		  button.onOff = {
+			button.pattern.stop;
+		  };
+		},
+		{
+		  button = LaunchButton(ColorScheme.background, ColorScheme.background);
+		}
+	  );
 
 	  button;
 	});

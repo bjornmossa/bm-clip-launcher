@@ -19,17 +19,22 @@
 //**********
 
 LaunchButton : Switchable {
-  var onColor;
-  var offColor;
+  var <>onColor;
+  var <>offColor;
   var isActive;
   var <view;
+  var <>pattern;
 
   *new {
-	| onColor, offColor |
-	^super.newCopyArgs(onColor, offColor).init;
+	| onClr, offClr |
+	^super.new.init(onClr, offClr);
   }
 
   init {
+	| onClr, offClr |
+	onColor = onClr;
+	offColor = offClr;
+
 	isActive = false;
 	view = UserView();
 	view.drawFunc = {this.draw};
